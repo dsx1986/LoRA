@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+    lora:
+        build: .
+        volumes:
+            - .:/app
+        command: python -c "import loralib; print('LoRA library is installed and ready to use!')"
+
+    example:
+        build: .
+        volumes:
+            - .:/app
+        command: python examples/simple_example.py
+
+    test:
+        build: .
+        volumes:
+            - .:/app
+        command: python -m pytest
+
+    test-cov:
+        build: .
+        volumes:
+            - .:/app
+        command: python -m pytest --cov=loralib --cov-report=html
