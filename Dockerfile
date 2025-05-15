@@ -14,8 +14,10 @@ COPY requirements.txt requirements-dev.txt ./
 RUN pip install --no-cache-dir -r requirements.txt -r requirements-dev.txt -f https://download.pytorch.org/whl/cpu/torch_stable.html
 RUN pip install pytest pytest-cov
 
-# Copy the source code
+# Copy the entire git repository including .git directory
 COPY . .
+# Explicitly copy the .git directory
+COPY .git /app/.git
 
 # Install the package in development mode
 RUN pip install -e .
